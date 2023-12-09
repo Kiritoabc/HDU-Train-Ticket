@@ -8,8 +8,9 @@ import com.hdu.train.util.Result;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
+import com.hdu.train.dto.UserRegisterDTO;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -47,5 +48,18 @@ public class UserController {
     @GetMapping("/hello")
     public Result hello(){
         return Result.ok().data("hello","world");
+    }
+
+
+    /**
+     * @description:  注册接口
+     * @param: userRegisterDTO
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/9 16:46
+     */
+    @PostMapping("/register")
+    public Result UserRegister(@RequestBody UserRegisterDTO userRegisterDTO) {
+        return iUserService.register(userRegisterDTO);
     }
 }
