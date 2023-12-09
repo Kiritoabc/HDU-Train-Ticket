@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author zq
  * @since 2023-12-09
  */
-@Service
+@Service("iTrainService")
 public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements ITrainService {
 
 }

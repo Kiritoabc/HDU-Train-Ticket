@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author zq
  * @since 2023-12-09
  */
-@Service
+@Service("iPassengerService")
 public class PassengerServiceImpl extends ServiceImpl<PassengerMapper, Passenger> implements IPassengerService {
 
 }

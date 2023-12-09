@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author zq
  * @since 2023-12-09
  */
-@Service
+@Service("iSeatService")
 public class SeatServiceImpl extends ServiceImpl<SeatMapper, Seat> implements ISeatService {
 
 }
