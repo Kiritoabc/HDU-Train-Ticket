@@ -15,7 +15,7 @@ public class JwtToken {
     //生成token
     public static String generateToken(String username) {
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + 1000 * expire);
+        Date expiration = new Date(now.getTime() + expire);
         return Jwts.builder()
                 .setHeaderParam("type", "JWT")
                 .setSubject(username)
