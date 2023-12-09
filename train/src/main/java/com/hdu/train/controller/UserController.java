@@ -29,7 +29,13 @@ public class UserController {
     }
 
 
-
+    /**
+     * @description:  注册接口
+     * @param: userRegisterDTO
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/9 16:46
+     */
     @PostMapping("/register")
     public Result UserRegister(@RequestBody UserRegisterDTO userRegisterDTO) {
         return iUserService.register(userRegisterDTO);
