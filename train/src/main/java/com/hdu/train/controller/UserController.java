@@ -1,9 +1,10 @@
 package com.hdu.train.controller;
 
+import com.hdu.train.entity.User;
+import com.hdu.train.service.IUserService;
 import com.hdu.train.util.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -16,6 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    @Autowired
+    private IUserService iUserService;
+    @PostMapping("login")
+    public Result login(@RequestBody User user){
+        if
+    }
     @GetMapping("/hello")
     public Result hello(){
         return Result.ok().data("hello","world");
