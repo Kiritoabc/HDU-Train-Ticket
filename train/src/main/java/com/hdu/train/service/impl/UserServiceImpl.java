@@ -1,5 +1,6 @@
 package com.hdu.train.service.impl;
 
+import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hdu.train.dto.UserRegisterDTO;
@@ -75,8 +76,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         // 2.开始注册
         User user = new User();
-        // TODO: 加密密码
+        // 采用 hutool 包加密
+        String pwd_md5 = SecureUtil.md5(userRegisterDTO.getUserPassword());
         BeanUtils.copyProperties(userRegisterDTO,user);
+        user.setUserPassword(pwd_md5);
         userMapper.insert(user);
         UserRegisterVO userRegisterVO = new UserRegisterVO();
         BeanUtils.copyProperties(userRegisterDTO,userRegisterVO);

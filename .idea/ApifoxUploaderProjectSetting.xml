@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ApifoxUploaderProjectSetting">
-    <option name="apifoxAccessToken" value="APS-KIUwf4Yroozwp2CYttO1KRyr443zpDy3" />
-    <option name="apifoxApiOverwriteMode" value="覆盖所有字段" />
+    <option name="apifoxAccessToken" value="APS-hYScxGmdO6XiHYkIxxtW38tUrNtDAkpd" />
     <option name="apifoxProjectIds">
       <array>
         <option value="# ModuleName:ProjectID" />
-        <option value="db_design_service:3704611" />
-        <option value="train:3730886" />
+        <option value="train:3699005" />
+        <option value="" />
+        <option value="Train:3699005" />
       </array>
     </option>
     <option name="yapiTokens" value="" />
