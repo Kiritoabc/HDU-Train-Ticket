@@ -2,6 +2,7 @@ package com.hdu.train.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hdu.train.entity.Order;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.hdu.train.entity.Order;
  * @author zq
  * @since 2023-12-09
  */
+@Mapper
 public interface OrderMapper extends BaseMapper<Order> {
 
 }

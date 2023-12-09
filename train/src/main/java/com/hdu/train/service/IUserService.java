@@ -16,5 +16,8 @@ import org.springframework.stereotype.Service;
  */
 public interface IUserService extends IService<User> {
 
+    String login(User user);
+
+    Object info(String username);
     Result register(UserRegisterDTO userRegisterDTO);
 }
