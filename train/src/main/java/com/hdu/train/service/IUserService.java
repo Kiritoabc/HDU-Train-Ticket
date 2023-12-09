@@ -13,4 +13,5 @@ import com.hdu.train.entity.User;
  */
 public interface IUserService extends IService<User> {
 
+    String login(User user);
 }
