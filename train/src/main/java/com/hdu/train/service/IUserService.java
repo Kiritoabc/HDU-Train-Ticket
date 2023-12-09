@@ -1,7 +1,10 @@
 package com.hdu.train.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hdu.train.dto.UserRegisterDTO;
 import com.hdu.train.entity.User;
+import com.hdu.train.util.Result;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.hdu.train.entity.User;
  */
 public interface IUserService extends IService<User> {
 
+    Result register(UserRegisterDTO userRegisterDTO);
 }
