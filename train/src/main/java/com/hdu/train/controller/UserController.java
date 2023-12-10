@@ -6,12 +6,13 @@ import com.hdu.train.util.JwtToken;
 import com.hdu.train.util.RedisObjUtil;
 import com.hdu.train.util.RedisUtils;
 import com.hdu.train.util.Result;
-import org.apache.ibatis.annotations.Param;
+import com.hdu.train.vo.UserInfoVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
+import java.util.Objects;
+
 import com.hdu.train.dto.UserRegisterDTO;
-import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -85,5 +86,23 @@ public class UserController {
             return Result.ok().message("成功退出");
         }
         return Result.error().message("redis缓存删除失败");
+    }
+
+    /**
+     * @description: 查询用户信息接口
+     * @param: token
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/10 13:02
+     */
+    @GetMapping("/userinfo")
+    public Result getUserInfo(@RequestParam String token){
+        User user = redisObjUtil.getEntity(token);
+        if(Objects.isNull(user)) {
+            return Result.error().message("用户登录过期，请重新登录");
+        }
+        UserInfoVO userInfoVO = new UserInfoVO();
+        BeanUtils.copyProperties(user,userInfoVO);
+        return Result.ok().data("userInfo",userInfoVO);
     }
 }

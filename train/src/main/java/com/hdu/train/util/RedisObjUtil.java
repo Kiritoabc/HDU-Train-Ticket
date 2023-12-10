@@ -48,7 +48,7 @@ public class RedisObjUtil {
      * @author 菠萝
      * @date: 2023/12/9 22:19
      */
-    public <T> T getEntity(String key, Class<T> entity) {
+    public <T> T getEntity(String key) {
         return (T) redisTemplate.opsForValue().get(key);
     }
 
