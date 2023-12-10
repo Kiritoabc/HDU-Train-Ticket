@@ -1,5 +1,6 @@
 package com.hdu.train.controller;
 
+import com.hdu.train.dto.ChangeUserDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.service.IUserService;
 import com.hdu.train.util.JwtToken;
@@ -74,7 +75,7 @@ public class UserController {
     }
 
     /**
-     * @description: 退出等铁路
+     * @description: 退出登录
      * @param: token
      * @return: com.hdu.train.util.Result
      * @author 菠萝
@@ -104,5 +105,17 @@ public class UserController {
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(user,userInfoVO);
         return Result.ok().data("userInfo",userInfoVO);
+    }
+
+    /**
+     * @description: 修改用户信息
+     * @param: changeUserDTO
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/10 13:26
+     */
+    @PostMapping("/changeuserinfo")
+    public Result ChangeUserInfo(@RequestBody ChangeUserDTO changeUserDTO){
+        return iUserService.changeUserInfo(changeUserDTO);
     }
 }
