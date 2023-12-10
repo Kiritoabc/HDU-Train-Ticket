@@ -1,5 +1,6 @@
 package com.hdu.train.controller;
 
+import com.hdu.train.dto.ChangePasswordDTO;
 import com.hdu.train.dto.ChangeUserDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.service.IUserService;
@@ -50,7 +51,9 @@ public class UserController {
     }
     @GetMapping("/info")
     public Result info(@RequestParam String token){
-        String username = redisUtils.get(token);
+//        String username = redisUtils.get(token);
+        User user = redisObjUtil.getEntity(token);
+        String username = user.getUserRealName();
         if (iUserService.info(username)!=null){
             Result.ok().data("data",iUserService.info(username));
         }
@@ -83,7 +86,7 @@ public class UserController {
      */
     @GetMapping("/signout")
     public Result Logout(@RequestParam String token){
-        if (redisObjUtil.deleteEntity(token)) {
+        if (redisUtils.delete(token)) {
             return Result.ok().message("成功退出");
         }
         return Result.error().message("redis缓存删除失败");
@@ -98,13 +101,7 @@ public class UserController {
      */
     @GetMapping("/userinfo")
     public Result getUserInfo(@RequestParam String token){
-        User user = redisObjUtil.getEntity(token);
-        if(Objects.isNull(user)) {
-            return Result.error().message("用户登录过期，请重新登录");
-        }
-        UserInfoVO userInfoVO = new UserInfoVO();
-        BeanUtils.copyProperties(user,userInfoVO);
-        return Result.ok().data("userInfo",userInfoVO);
+        return iUserService.getUserInfo(token);
     }
 
     /**
@@ -118,4 +115,17 @@ public class UserController {
     public Result ChangeUserInfo(@RequestBody ChangeUserDTO changeUserDTO){
         return iUserService.changeUserInfo(changeUserDTO);
     }
+
+    /**
+     * @description: 更改用户密码
+     * @param: changePasswordDTO
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/10 14:45
+     */
+    @PostMapping("/changepassword")
+    public Result ChangePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
+        return iUserService.updatePassword(changePasswordDTO);
+    }
+
 }

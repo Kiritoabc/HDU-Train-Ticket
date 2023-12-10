@@ -2,7 +2,10 @@ package com.hdu.train.service.impl;
 
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hdu.train.dto.ChangePasswordDTO;
 import com.hdu.train.dto.ChangeUserDTO;
 import com.hdu.train.dto.UserRegisterDTO;
 import com.hdu.train.entity.User;
@@ -10,7 +13,9 @@ import com.hdu.train.mapper.UserMapper;
 import com.hdu.train.service.IUserService;
 import com.hdu.train.util.RedisObjUtil;
 import com.hdu.train.util.Result;
+import com.hdu.train.vo.UserInfoVO;
 import com.hdu.train.vo.UserRegisterVO;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -111,5 +116,51 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         redisObjUtil.deleteEntity(changeUserDTO.getUserPhoneNumber());
         // 返回
         return Result.ok().message("更新成功");
+    }
+
+    @Transactional
+    @Override
+    public Result getUserInfo(String token) {
+        // 首先判断token有没有过期
+        User user = redisObjUtil.getEntity(token);
+        if(Objects.isNull(user)) {
+            return Result.error().message("登录过期，请重新登录");
+        }
+        // 先从缓存中查询数据
+        User cacheUser = redisObjUtil.getEntity(user.getUserPhoneNumber());
+        UserInfoVO userInfoVO = new UserInfoVO();
+        if(!Objects.isNull(cacheUser)){
+            BeanUtils.copyProperties(cacheUser,userInfoVO);
+            return Result.ok().data("userInfo",userInfoVO);
+        }
+        // 查询数据库
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(User::getUserPhoneNumber,user.getUserPhoneNumber());
+        User user1 = userMapper.selectOne(lambdaQueryWrapper);
+        // 更新缓存,设置过期时间(暂时不确定要不要)
+        redisObjUtil.setEntity(user1.getUserPhoneNumber(),user1);
+        BeanUtils.copyProperties(user1,userInfoVO);
+        return Result.ok().data("userInfo",userInfoVO);
+    }
+
+    @Transactional
+    @Override
+    public Result updatePassword(ChangePasswordDTO changePasswordDTO) {
+        // 修改密码暂时不需要动缓存
+        String token = changePasswordDTO.getToken();
+        User user = redisObjUtil.getEntity(token);
+        // 查询数据库对比密码
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(User::getUserPhoneNumber,user.getUserPhoneNumber());
+        User user1 = userMapper.selectOne(lambdaQueryWrapper);
+        if (!SecureUtil.md5(changePasswordDTO.getUserOldPassword()).equals(user1.getUserPassword())){
+            return Result.error().message("密码错误");
+        }
+        // 更新密码
+        LambdaUpdateWrapper<User> userUpdateWrapper = new LambdaUpdateWrapper<>();
+        userUpdateWrapper.set(User::getUserPassword,
+                        SecureUtil.md5(changePasswordDTO.getUserNewPassword()));
+        userMapper.update(user1,userUpdateWrapper);
+        return Result.ok().message("密码修改成功");
     }
 }
