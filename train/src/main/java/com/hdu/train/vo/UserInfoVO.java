@@ -21,7 +21,7 @@ public class UserInfoVO {
 
     private String userEmail;
     /**
-     * 成人0学生1
+     * 成人0学生1,-1管理员
      */
     private Integer userType;
     /**

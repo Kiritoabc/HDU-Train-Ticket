@@ -1,4 +1,4 @@
-create table order_list
+create table `order`
 (
     order_id           int auto_increment
         primary key,
@@ -27,7 +27,7 @@ create table passenger
     passenger_real_name    varchar(20) not null,
     passenger_id_number    varchar(20) not null,
     passenger_type         int         not null,
-    passenger_adress       varchar(50) not null
+    passenger_address      varchar(50) not null
 )
     row_format = DYNAMIC;
 
@@ -41,7 +41,21 @@ create table seat
 )
     row_format = DYNAMIC;
 
-create table train_info
+create table station
+(
+    train_no       varchar(20) not null,
+    train_number   varchar(20) not null,
+    arrive_day_str varchar(20) not null,
+    arriver_time   varchar(20) not null,
+    start_time     varchar(20) not null,
+    running_time   varchar(20) not null,
+    station_no     varchar(20) not null,
+    station_name   varchar(20) not null,
+    primary key (train_no, station_no)
+)
+    row_format = DYNAMIC;
+
+create table train
 (
     train_no            varchar(20) not null
         primary key,
@@ -58,28 +72,14 @@ create table train_info
 )
     row_format = DYNAMIC;
 
-create table train_parking_station
-(
-    train_no       varchar(20) not null,
-    train_number   varchar(20) not null,
-    arrive_day_str varchar(20) not null,
-    arriver_time   varchar(20) not null,
-    start_time     varchar(20) not null,
-    running_time   varchar(20) not null,
-    station_no     varchar(20) not null,
-    station_name   varchar(20) not null,
-    primary key (train_no, station_no)
-)
-    row_format = DYNAMIC;
-
 create table user
 (
     user_phone_number varchar(15) not null
         primary key,
-    `user-password`   varchar(20) not null,
-    `user-email`      varchar(20) not null,
-    `user-real_name`  varchar(10) not null,
-    `user-type`       int         not null comment '成人0学生1',
+    user_password     varchar(20) not null,
+    user_email        varchar(20) not null,
+    user_real_name    varchar(10) not null,
+    user_type         int         not null comment '成人0学生1',
     user_id_number    varchar(20) not null,
     user_gender       int         not null comment '男1女0',
     user_address      varchar(50) not null

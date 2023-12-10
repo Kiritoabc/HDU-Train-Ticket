@@ -3,24 +3,25 @@ package com.hdu.train.service.impl;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hdu.train.dto.AdminLoginDTO;
 import com.hdu.train.dto.ChangePasswordDTO;
 import com.hdu.train.dto.ChangeUserDTO;
 import com.hdu.train.dto.UserRegisterDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.mapper.UserMapper;
 import com.hdu.train.service.IUserService;
+import com.hdu.train.util.JwtToken;
 import com.hdu.train.util.RedisObjUtil;
 import com.hdu.train.util.Result;
 import com.hdu.train.vo.UserInfoVO;
 import com.hdu.train.vo.UserRegisterVO;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 import java.util.HashMap;
@@ -162,5 +163,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                         SecureUtil.md5(changePasswordDTO.getUserNewPassword()));
         userMapper.update(user1,userUpdateWrapper);
         return Result.ok().message("密码修改成功");
+    }
+
+    @Override
+    public Result adminLogin(AdminLoginDTO adminLoginDTO) {
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(User::getUserPhoneNumber,adminLoginDTO.getUserName());
+        User user = userMapper.selectOne(lambdaQueryWrapper);
+        // 查看用户名 ，对比密码
+        if (Objects.isNull(user) || SecureUtil.md5(adminLoginDTO.getPassword()).equals(user.getUserPassword())) {
+            return Result.error().message("用户名或密码错误");
+        }
+        //  token 存入缓存
+        String token = JwtToken.generateToken(user.getUserRealName());
+        // 将user信息存入redis,并设置过期时间 --> 对应jwt的有效时间为7天
+        redisObjUtil.setEntity(token,user,60*24*7);
+        return Result.ok().data("token",token);
+    }
+
+    @Override
+    public List<UserInfoVO> getAllUser() {
+        return userMapper.selectAllUser();
+    }
+
+    @Override
+    public Result deleteUser(String userPhoneNumber) {
+        return null;
     }
 }

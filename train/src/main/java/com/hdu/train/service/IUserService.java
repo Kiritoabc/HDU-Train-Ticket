@@ -1,12 +1,16 @@
 package com.hdu.train.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hdu.train.dto.AdminLoginDTO;
 import com.hdu.train.dto.ChangePasswordDTO;
 import com.hdu.train.dto.ChangeUserDTO;
 import com.hdu.train.dto.UserRegisterDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.util.Result;
+import com.hdu.train.vo.UserInfoVO;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -28,4 +32,10 @@ public interface IUserService extends IService<User> {
     Result getUserInfo(String token);
 
     Result updatePassword(ChangePasswordDTO changePasswordDTO);
+
+    Result adminLogin(AdminLoginDTO adminLoginDTO);
+
+    List<UserInfoVO> getAllUser();
+
+    Result deleteUser(String userPhoneNumber);
 }
