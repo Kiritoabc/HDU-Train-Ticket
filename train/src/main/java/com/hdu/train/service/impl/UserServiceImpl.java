@@ -188,6 +188,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public Result deleteUser(String userPhoneNumber) {
+        // todo: 对于删除用户，是否要考虑用户是否存在订单，考虑是否使用删除字段
         return null;
     }
 }
