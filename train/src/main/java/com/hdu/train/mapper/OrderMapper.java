@@ -90,4 +90,21 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Select("select order_money from `order` where order_id = #{orderId}")
     String GetOrderMoney(@Param("orderId") String orderId);
+
+    @Select("select A.order_id as orderId , D.passengerRealName as passengerRealName,C.train_number as trainNumber ," +
+            "A.start_station_name as startStationName ,A.end_station_name as endStationName," +
+            "A.carriage_no as carriageNo, B.seat_type as seatType," +
+            "A.seat_no as seatNo,  A.train_start_date as startDate," +
+            "C.start_time as startTime , A.order_status as orderStatus," +
+            "A.passenger_phone_number as passengerPhoneNumber," +
+            "A.passenger_id_number as passengerIdNumber ," +
+            "A.order_money as orderMoney  " +
+            "from `order` as A ,seat as B , `station` as C , passenger as D " +
+            "where A.train_no = B.train_no " +
+            "and A.carriage_no = B.carriage_no " +
+            "and A.train_no = C.train_no " +
+            "and A.passenger_phone_number = D.passenger_phone_number " +
+            "and C.station_name  = A.start_station_name " +
+            " order by A.order_create_time")
+    List<OrderVO> GetAllOrder();
 }

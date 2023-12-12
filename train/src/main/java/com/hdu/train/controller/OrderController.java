@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+
+// order passenger train trainSchedule query user
+
 /**
  * <p>
  *  前端控制器
@@ -145,6 +148,8 @@ public class OrderController {
         return null;
     }
 
+
+
     /**
      * @description: 获取订单钱数
      * @param: order_id
@@ -156,6 +161,33 @@ public class OrderController {
     public Result getOrderMoney(@RequestParam String order_id){
         String order_money = iOrderService.getOrderMoney(order_id);
         return Result.ok().data("order_money",order_money);
+    }
+
+    /**
+     * @description: 获取所有订单
+     * @param:
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/12 11:19
+     */
+    @GetMapping("/getAllOrder")
+    public Result GetOrderList(){
+        List<OrderVO> list =iOrderService.getAllOrder();
+        list.forEach(orderVo ->orderVo.setSeatNo(getResultSeatNo(orderVo.getSeatType(), Integer.parseInt(orderVo.getSeatNo()))));
+        return Result.ok().data("list",list);
+    }
+    /**
+     * @description: 根据电话查询订单
+     * @param: user_phone_number
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/12 11:23
+     */
+    @GetMapping("/getOrderByPhoneNumber")
+    public Result getOrderByPhoneNumber(@RequestParam String user_phone_number){
+        List<OrderVO> list = iOrderService.getAllOrderLists(user_phone_number);
+        list.forEach(orderVO -> orderVO.setSeatNo(getResultSeatNo(orderVO.getSeatType(), Integer.parseInt(orderVO.getSeatNo()))));
+        return Result.ok().data("list",list);
     }
 
     private String getResultSeatNo(String seatType, int seatNo) {

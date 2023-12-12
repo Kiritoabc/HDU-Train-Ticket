@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023-12-09
  */
 @RestController
-@RequestMapping("/station")
-public class StationController {
+@RequestMapping("/query")
+public class TrainTicketQueryController {
 
 }

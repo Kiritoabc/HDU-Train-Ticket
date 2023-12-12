@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ *  列车时刻表查询的业务处理逻辑
  * </p>
  *
  * @author zq
  * @since 2023-12-09
  */
 @RestController
-@RequestMapping("/seat")
-public class SeatController {
+@RequestMapping("/trainSchedule")
+public class TrainScheduleController {
 
 }

@@ -57,5 +57,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         return orderMapper.GetOrderMoney(orderId);
     }
 
+    @Override
+    public List<OrderVO> getAllOrder() {
+        return orderMapper.GetAllOrder();
+    }
+
 
 }

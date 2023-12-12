@@ -29,4 +29,6 @@ public interface IOrderService extends IService<Order> {
     List<GetOrderListVO> getOrderInfo(String orderId);
 
     String getOrderMoney(String orderId);
+
+    List<OrderVO> getAllOrder();
 }
