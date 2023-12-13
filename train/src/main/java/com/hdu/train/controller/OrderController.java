@@ -2,6 +2,7 @@ package com.hdu.train.controller;
 
 
 import com.hdu.train.dto.OrderInfoDTO;
+import com.hdu.train.dto.OrderTrainTicketDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.service.IOrderService;
 import com.hdu.train.util.RedisObjUtil;
@@ -187,6 +188,36 @@ public class OrderController {
     public Result getOrderByPhoneNumber(@RequestParam String user_phone_number){
         List<OrderVO> list = iOrderService.getAllOrderLists(user_phone_number);
         list.forEach(orderVO -> orderVO.setSeatNo(getResultSeatNo(orderVO.getSeatType(), Integer.parseInt(orderVO.getSeatNo()))));
+        return Result.ok().data("list",list);
+    }
+    /**
+     * @description: 订票
+     * @param: orderTrainTicketDTO
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/13 13:44
+     */
+    @PostMapping("/orderTrainTicket")
+    public Result orderTrainTicket(@RequestBody OrderTrainTicketDTO orderTrainTicketDTO) {
+        return iOrderService.orderTrainTicket(orderTrainTicketDTO);
+    }
+
+    /**
+     * @description:  查询订单
+     * @param:  token
+                datetime
+                train_no
+                start_no
+                end_no
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/13 14:03
+     */
+    @GetMapping("/getOrderList")
+    public Result getOrderList(@RequestParam String token,String datetime,String train_no,String start_no,String end_no) {
+        User user = redisObjUtil.getEntity(token);
+        String userPhoneNumber = user.getUserPhoneNumber();
+        List<GetOrderListVO> list = iOrderService.getOrderList(userPhoneNumber,train_no,start_no,end_no);
         return Result.ok().data("list",list);
     }
 

@@ -107,4 +107,19 @@ public interface OrderMapper extends BaseMapper<Order> {
             "and C.station_name  = A.start_station_name " +
             " order by A.order_create_time")
     List<OrderVO> GetAllOrder();
+
+    @Select("select A.order_id as order_id,B.passenger_real_name as passenger_real_name ," +
+            "A.passenger_phone_number as passenger_phone_number,A.passenger_id_number as passenger_id_number," +
+            "A.carriage_no  as carriage_no, C.seat_type as seat_type,A.seat_no as seat_no" +
+            " from `order` as A , `passenger` as B ,`seat` as C " +
+            " where A.user_phone_number = #{user_phone_number}  and A.train_no = #{train_no} and A.start_station_no = #{start_no} " +
+            " and A.end_station_no = #{end_no} " +
+            "and A.train_no = C.train_no " +
+            "and A.carriage_no = C.carriage_no " +
+            "and A.passenger_phone_number = B.passenger_phone_number " +
+            "and A.order_status = '未支付'")
+    List<GetOrderListVO> getOrderList(@Param("user_phone_number")String userPhoneNumber,
+                                      @Param("train_no") String trainNo,
+                                      @Param("start_no") String startNo,
+                                      @Param("end_no") String endNo);
 }

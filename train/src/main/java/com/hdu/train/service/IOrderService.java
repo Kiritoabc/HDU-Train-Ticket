@@ -1,8 +1,9 @@
 package com.hdu.train.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hdu.train.dto.OrderInfoDTO;
+import com.hdu.train.dto.OrderTrainTicketDTO;
 import com.hdu.train.entity.Order;
+import com.hdu.train.util.Result;
 import com.hdu.train.vo.GetOrderListVO;
 import com.hdu.train.vo.OrderVO;
 
@@ -31,4 +32,8 @@ public interface IOrderService extends IService<Order> {
     String getOrderMoney(String orderId);
 
     List<OrderVO> getAllOrder();
+
+    Result orderTrainTicket(OrderTrainTicketDTO orderTrainTicketDTO);
+
+    List<GetOrderListVO> getOrderList(String userPhoneNumber, String trainNo, String startNo, String endNo);
 }
