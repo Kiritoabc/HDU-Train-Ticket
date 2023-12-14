@@ -2,6 +2,7 @@ package com.hdu.train.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hdu.train.entity.Train;
+import com.hdu.train.util.Result;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.hdu.train.entity.Train;
  */
 public interface ITrainService extends IService<Train> {
 
+    Result TrainInfo(Integer offset, Integer limit);
 }
