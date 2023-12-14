@@ -3,6 +3,7 @@ package com.hdu.train.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hdu.train.entity.Train;
 import com.hdu.train.util.Result;
+import com.hdu.train.vo.TrainInfoVO;
 
 /**
  * <p>
@@ -15,4 +16,12 @@ import com.hdu.train.util.Result;
 public interface ITrainService extends IService<Train> {
 
     Result TrainInfo(Integer offset, Integer limit);
+
+    TrainInfoVO selectTrainInfo(String trainNumber);
+
+    void updateTrainTypeStart(String trainNo);
+
+    void updateTrainTypeStop(String trainNo);
+
+    void deleteTrainSeat(String trainNo, String carriageNo);
 }

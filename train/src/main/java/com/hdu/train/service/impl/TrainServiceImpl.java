@@ -35,4 +35,27 @@ public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements
         PageVO pageVO = new PageVO(trainInfoVOS,iPage.getTotal());
         return Result.ok().data("list",pageVO);
     }
+
+    @Override
+    public TrainInfoVO selectTrainInfo(String trainNumber) {
+        LambdaQueryWrapper<Train> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Train::getTarinNumber,trainNumber);
+        Train train = this.baseMapper.selectOne(lambdaQueryWrapper);
+        return BeanCopyUtils.copyBean(train, TrainInfoVO.class);
+    }
+
+    @Override
+    public void updateTrainTypeStart(String trainNo) {
+        this.baseMapper.updateTrainTypeStart(trainNo);
+    }
+
+    @Override
+    public void updateTrainTypeStop(String trainNo) {
+        this.baseMapper.updateTrainTypeStop(trainNo);
+    }
+
+    @Override
+    public void deleteTrainSeat(String trainNo, String carriageNo) {
+        this.baseMapper.deleteTrainSeat(trainNo,carriageNo);
+    }
 }
