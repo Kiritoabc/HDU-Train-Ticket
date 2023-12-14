@@ -24,4 +24,9 @@ public class SeatServiceImpl extends ServiceImpl<SeatMapper, Seat> implements IS
     public List<Seat> selectSeatInfoByTrainNumber(String train_number) {
         return this.baseMapper.selectSeatInfoByTrainNumber(train_number);
     }
+
+    @Override
+    public void addTrainSeat(Seat seat) {
+        this.baseMapper.insert(seat);
+    }
 }

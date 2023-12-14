@@ -25,4 +25,6 @@ public interface StationMapper extends BaseMapper<Station> {
             "and a.train_no = b.train_no order by b.station_no ")
     List<Station> findTrainParkingInfo(@Param("train_number") String train_number);
 
+    @Select("select station_name from station")
+    List<String> getAllstationName();
 }

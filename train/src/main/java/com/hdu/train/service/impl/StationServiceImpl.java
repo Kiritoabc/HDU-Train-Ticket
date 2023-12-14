@@ -24,4 +24,14 @@ public class StationServiceImpl extends ServiceImpl<StationMapper, Station> impl
     public List<Station> searchTrainParkingStation(String train_number) {
         return this.baseMapper.findTrainParkingInfo(train_number);
     }
+
+    @Override
+    public List<String> getAllstationName() {
+        return this.baseMapper.getAllstationName();
+    }
+
+    @Override
+    public void addTrainStation(Station station) {
+        this.baseMapper.insert(station);
+    }
 }

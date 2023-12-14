@@ -16,4 +16,8 @@ import java.util.List;
 public interface IStationService extends IService<Station> {
 
     List<Station> searchTrainParkingStation(String trainNumber);
+
+    List<String> getAllstationName();
+
+    void addTrainStation(Station station);
 }

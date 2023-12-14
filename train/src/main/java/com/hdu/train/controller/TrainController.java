@@ -2,16 +2,15 @@ package com.hdu.train.controller;
 
 import com.hdu.train.entity.Seat;
 import com.hdu.train.entity.Station;
+import com.hdu.train.entity.Train;
 import com.hdu.train.service.ISeatService;
 import com.hdu.train.service.IStationService;
 import com.hdu.train.service.ITrainService;
 import com.hdu.train.util.Result;
 import com.hdu.train.vo.TrainInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -106,6 +105,76 @@ public class TrainController {
         catch (Exception e)
         {
             return Result.error().message("删除失败");
+        }
+    }
+    @GetMapping("/addTrainSeat")
+    public Result addTrainSeat(String train_no,String carriage_no,String seat_type,String seat_count){
+        Seat seat = new Seat(train_no,carriage_no,seat_type,Integer.parseInt(seat_count));
+        try
+        {
+            iSeatService.addTrainSeat(seat);
+            return Result.ok().message("增加成功");
+        }
+        catch (Exception e)
+        {
+            return Result.error().message("增加失败");
+        }
+    }
+    @GetMapping("/getAllTrainNumber")
+    public Result getAllTrainNumber(){
+
+        try
+        {
+            List<String> trainNumbers= iTrainService.getAllTrainNumber();
+            return Result.ok().data("list",trainNumbers);
+        }
+        catch (Exception e)
+        {
+            return Result.error().message("查询失败");
+        }
+    }
+    @GetMapping("/getAllStationName")
+    public Result getAllStationName(){
+        try
+        {
+            List<String> stationNames= iStationService.getAllstationName();
+            return Result.ok().data("list",stationNames);
+        }
+        catch (Exception e)
+        {
+            return Result.error().message("查询失败");
+        }
+    }
+
+    @PostMapping("addTrainInfo")
+    public Result addTrainInfo(@RequestBody Train train, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        try
+        {
+            iTrainService.addTrainInfo(train);
+            return Result.ok().message("插入成功");
+        }
+        catch (Exception e)
+        {
+            return Result.error().message("插入失败");
+        }
+
+    }
+    @PostMapping("/addTrainStation")
+    public Result addTrainStation(@RequestBody Station station,BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }
+        try
+        {
+            iStationService.addTrainStation(station);
+            return Result.ok().message("插入成功");
+        }
+        catch (Exception e)
+        {
+            return Result.error().message("插入失败");
         }
     }
 

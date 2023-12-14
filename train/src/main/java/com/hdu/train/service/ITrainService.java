@@ -5,6 +5,8 @@ import com.hdu.train.entity.Train;
 import com.hdu.train.util.Result;
 import com.hdu.train.vo.TrainInfoVO;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -24,4 +26,8 @@ public interface ITrainService extends IService<Train> {
     void updateTrainTypeStop(String trainNo);
 
     void deleteTrainSeat(String trainNo, String carriageNo);
+
+    List<String> getAllTrainNumber();
+
+    void addTrainInfo(Train train);
 }

@@ -58,4 +58,14 @@ public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements
     public void deleteTrainSeat(String trainNo, String carriageNo) {
         this.baseMapper.deleteTrainSeat(trainNo,carriageNo);
     }
+
+    @Override
+    public List<String> getAllTrainNumber() {
+        return this.baseMapper.getAllTrainNumber();
+    }
+
+    @Override
+    public void addTrainInfo(Train train) {
+        this.baseMapper.insert(train);
+    }
 }

@@ -22,6 +22,13 @@ public class Seat implements Serializable {
 
     private Integer seatCount;
 
+    public Seat(String trainNo, String carriageNo, String seatType, Integer seatCount) {
+        this.trainNo = trainNo;
+        this.carriageNo = carriageNo;
+        this.seatType = seatType;
+        this.seatCount = seatCount;
+    }
+
     public String getTrainNo() {
         return trainNo;
     }

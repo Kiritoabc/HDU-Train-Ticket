@@ -16,4 +16,6 @@ import java.util.List;
 public interface ISeatService extends IService<Seat> {
 
     List<Seat> selectSeatInfoByTrainNumber(String trainNumber);
+
+    void addTrainSeat(Seat seat);
 }

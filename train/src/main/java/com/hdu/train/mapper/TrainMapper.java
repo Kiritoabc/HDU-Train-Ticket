@@ -2,10 +2,9 @@ package com.hdu.train.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hdu.train.entity.Train;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -23,4 +22,7 @@ public interface TrainMapper extends BaseMapper<Train> {
     void updateTrainTypeStop(@Param("train_no") String train_no);
     @Delete("delete from seat where train_no = #{train_no} and carriage_no = #{carriage_no}")
     void deleteTrainSeat(@Param("train_no") String train_no,@Param("carriage_no") String carriage_no);
+
+    @Select("select train_number from train")
+    List<String> getAllTrainNumber();
 }
