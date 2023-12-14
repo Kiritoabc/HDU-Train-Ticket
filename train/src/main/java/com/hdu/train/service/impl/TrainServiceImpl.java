@@ -39,7 +39,7 @@ public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements
     @Override
     public TrainInfoVO selectTrainInfo(String trainNumber) {
         LambdaQueryWrapper<Train> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(Train::getTarinNumber,trainNumber);
+        lambdaQueryWrapper.eq(Train::getTrainNumber,trainNumber);
         Train train = this.baseMapper.selectOne(lambdaQueryWrapper);
         return BeanCopyUtils.copyBean(train, TrainInfoVO.class);
     }

@@ -10,31 +10,78 @@ import java.io.Serializable;
  * @author zq
  * @since 2023-12-09
  */
+
 public class Train implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private String trainNo;
 
-    private String tarinNumber;
+    private String trainNumber;
 
-    private String tarinType;
+    private String trainType;
 
-    private Integer tarinCarriages;
+    private Integer trainCarriages;
 
-    private String tarinEndStation;
+    private String trainEndStation;
 
-    private String tarinStartStation;
+    private String trainStartStation;
 
-    private String tarinStartTime;
+    private String trainStartTime;
 
-    private String tarinEndTime;
+    private String trainEndTime;
 
-    private String tarinArriveDay;
+    private String trainArriveDay;
 
-    private String tarinRunningTime;
+    private String trainRunningTime;
 
-    private String tarinRunningType;
+    private String trainRunningType;
+
+    private Double highPrice;
+
+    private Double mediumPrice;
+
+    private Double lowPrice;
+
+    public Train(String trainNo, String trainNumber, String trainType, Integer trainCarriages, String trainEndStation, String trainStartStation, String trainStartTime, String trainEndTime, String trainArriveDay, String trainRunningTime, String trainRunningType, Double highPrice, Double mediumPrice, Double lowPrice) {
+        this.trainNo = trainNo;
+        this.trainNumber = trainNumber;
+        this.trainType = trainType;
+        this.trainCarriages = trainCarriages;
+        this.trainEndStation = trainEndStation;
+        this.trainStartStation = trainStartStation;
+        this.trainStartTime = trainStartTime;
+        this.trainEndTime = trainEndTime;
+        this.trainArriveDay = trainArriveDay;
+        this.trainRunningTime = trainRunningTime;
+        this.trainRunningType = trainRunningType;
+        this.highPrice = highPrice;
+        this.mediumPrice = mediumPrice;
+        this.lowPrice = lowPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Train{" +
+                "trainNo='" + trainNo + '\'' +
+                ", trainNumber='" + trainNumber + '\'' +
+                ", trainType='" + trainType + '\'' +
+                ", trainCarriages=" + trainCarriages +
+                ", trainEndStation='" + trainEndStation + '\'' +
+                ", trainStartStation='" + trainStartStation + '\'' +
+                ", trainStartTime='" + trainStartTime + '\'' +
+                ", trainEndTime='" + trainEndTime + '\'' +
+                ", trainArriveDay='" + trainArriveDay + '\'' +
+                ", trainRunningTime='" + trainRunningTime + '\'' +
+                ", trainRunningType='" + trainRunningType + '\'' +
+                ", highPrice=" + highPrice +
+                ", mediumPrice=" + mediumPrice +
+                ", lowPrice=" + lowPrice +
+                '}';
+    }
+
+    public Train() {
+    }
 
     public String getTrainNo() {
         return trainNo;
@@ -43,91 +90,108 @@ public class Train implements Serializable {
     public void setTrainNo(String trainNo) {
         this.trainNo = trainNo;
     }
-    public String getTarinNumber() {
-        return tarinNumber;
+
+    public String getTrainNumber() {
+        return trainNumber;
     }
 
-    public void setTarinNumber(String tarinNumber) {
-        this.tarinNumber = tarinNumber;
-    }
-    public String getTarinType() {
-        return tarinType;
+    public void setTrainNumber(String trainNumber) {
+        this.trainNumber = trainNumber;
     }
 
-    public void setTarinType(String tarinType) {
-        this.tarinType = tarinType;
-    }
-    public Integer getTarinCarriages() {
-        return tarinCarriages;
+    public String getTrainType() {
+        return trainType;
     }
 
-    public void setTarinCarriages(Integer tarinCarriages) {
-        this.tarinCarriages = tarinCarriages;
-    }
-    public String getTarinEndStation() {
-        return tarinEndStation;
+    public void setTrainType(String trainType) {
+        this.trainType = trainType;
     }
 
-    public void setTarinEndStation(String tarinEndStation) {
-        this.tarinEndStation = tarinEndStation;
-    }
-    public String getTarinStartStation() {
-        return tarinStartStation;
+    public Integer getTrainCarriages() {
+        return trainCarriages;
     }
 
-    public void setTarinStartStation(String tarinStartStation) {
-        this.tarinStartStation = tarinStartStation;
-    }
-    public String getTarinStartTime() {
-        return tarinStartTime;
+    public void setTrainCarriages(Integer trainCarriages) {
+        this.trainCarriages = trainCarriages;
     }
 
-    public void setTarinStartTime(String tarinStartTime) {
-        this.tarinStartTime = tarinStartTime;
-    }
-    public String getTarinEndTime() {
-        return tarinEndTime;
+    public String getTrainEndStation() {
+        return trainEndStation;
     }
 
-    public void setTarinEndTime(String tarinEndTime) {
-        this.tarinEndTime = tarinEndTime;
-    }
-    public String getTarinArriveDay() {
-        return tarinArriveDay;
+    public void setTrainEndStation(String trainEndStation) {
+        this.trainEndStation = trainEndStation;
     }
 
-    public void setTarinArriveDay(String tarinArriveDay) {
-        this.tarinArriveDay = tarinArriveDay;
-    }
-    public String getTarinRunningTime() {
-        return tarinRunningTime;
+    public String getTrainStartStation() {
+        return trainStartStation;
     }
 
-    public void setTarinRunningTime(String tarinRunningTime) {
-        this.tarinRunningTime = tarinRunningTime;
-    }
-    public String getTarinRunningType() {
-        return tarinRunningType;
+    public void setTrainStartStation(String trainStartStation) {
+        this.trainStartStation = trainStartStation;
     }
 
-    public void setTarinRunningType(String tarinRunningType) {
-        this.tarinRunningType = tarinRunningType;
+    public String getTrainStartTime() {
+        return trainStartTime;
     }
 
-    @Override
-    public String toString() {
-        return "Train{" +
-            "trainNo=" + trainNo +
-            ", tarinNumber=" + tarinNumber +
-            ", tarinType=" + tarinType +
-            ", tarinCarriages=" + tarinCarriages +
-            ", tarinEndStation=" + tarinEndStation +
-            ", tarinStartStation=" + tarinStartStation +
-            ", tarinStartTime=" + tarinStartTime +
-            ", tarinEndTime=" + tarinEndTime +
-            ", tarinArriveDay=" + tarinArriveDay +
-            ", tarinRunningTime=" + tarinRunningTime +
-            ", tarinRunningType=" + tarinRunningType +
-        "}";
+    public void setTrainStartTime(String trainStartTime) {
+        this.trainStartTime = trainStartTime;
+    }
+
+    public String getTrainEndTime() {
+        return trainEndTime;
+    }
+
+    public void setTrainEndTime(String trainEndTime) {
+        this.trainEndTime = trainEndTime;
+    }
+
+    public String getTrainArriveDay() {
+        return trainArriveDay;
+    }
+
+    public void setTrainArriveDay(String trainArriveDay) {
+        this.trainArriveDay = trainArriveDay;
+    }
+
+    public String getTrainRunningTime() {
+        return trainRunningTime;
+    }
+
+    public void setTrainRunningTime(String trainRunningTime) {
+        this.trainRunningTime = trainRunningTime;
+    }
+
+    public String getTrainRunningType() {
+        return trainRunningType;
+    }
+
+    public void setTrainRunningType(String trainRunningType) {
+        this.trainRunningType = trainRunningType;
+    }
+
+    public Double getHighPrice() {
+        return highPrice;
+    }
+
+    public void setHighPrice(Double highPrice) {
+        this.highPrice = highPrice;
+    }
+
+    public Double getMediumPrice() {
+        return mediumPrice;
+    }
+
+    public void setMediumPrice(Double mediumPrice) {
+        this.mediumPrice = mediumPrice;
+    }
+
+    public Double getLowPrice() {
+        return lowPrice;
+    }
+
+    public void setLowPrice(Double lowPrice) {
+        this.lowPrice = lowPrice;
     }
 }
