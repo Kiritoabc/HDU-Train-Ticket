@@ -36,4 +36,6 @@ public interface IOrderService extends IService<Order> {
     Result orderTrainTicket(OrderTrainTicketDTO orderTrainTicketDTO);
 
     List<GetOrderListVO> getOrderList(String userPhoneNumber, String trainNo, String startNo, String endNo);
+
+    Result UpdateOrderPay(List<String> orderIdList);
 }

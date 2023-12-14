@@ -1,5 +1,6 @@
 package com.hdu.train.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hdu.train.dto.OrderTrainTicketDTO;
 import com.hdu.train.entity.Order;
@@ -72,6 +73,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Override
     public List<GetOrderListVO> getOrderList(String userPhoneNumber, String trainNo, String startNo, String endNo) {
         return orderMapper.getOrderList(userPhoneNumber, trainNo,  startNo, endNo);
+    }
+
+    @Override
+    public Result UpdateOrderPay(List<String> orderIdList) {
+        LambdaUpdateWrapper<Order> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.in(Order::getOrderId, orderIdList)
+                .set(Order::getOrderStatus,"未出行" );
+        // 批量更新
+        boolean update = update(updateWrapper);
+        if (update){
+            return Result.ok().message("支付成功");
+        }
+        return Result.error().message("支付失败");
     }
 
 

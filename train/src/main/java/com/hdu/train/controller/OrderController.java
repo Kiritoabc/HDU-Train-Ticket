@@ -3,6 +3,7 @@ package com.hdu.train.controller;
 
 import com.hdu.train.dto.OrderInfoDTO;
 import com.hdu.train.dto.OrderTrainTicketDTO;
+import com.hdu.train.dto.PayDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.service.IOrderService;
 import com.hdu.train.util.RedisObjUtil;
@@ -219,6 +220,17 @@ public class OrderController {
         String userPhoneNumber = user.getUserPhoneNumber();
         List<GetOrderListVO> list = iOrderService.getOrderList(userPhoneNumber,train_no,start_no,end_no);
         return Result.ok().data("list",list);
+    }
+    /**
+     * @description: 订单支付
+     * @param: payDTO
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/14 11:04
+     */
+    @PostMapping("/paySuccess")
+    public Result PaySuccess(@RequestBody PayDTO payDTO) {
+        return iOrderService.UpdateOrderPay(payDTO.getOrderIdList());
     }
 
     private String getResultSeatNo(String seatType, int seatNo) {
