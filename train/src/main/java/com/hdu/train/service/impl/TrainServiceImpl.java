@@ -11,8 +11,15 @@ import com.hdu.train.util.BeanCopyUtils;
 import com.hdu.train.util.Result;
 import com.hdu.train.vo.PageVO;
 import com.hdu.train.vo.TrainInfoVO;
+import com.hdu.train.vo.TrainScheduleInfoVO;
+import com.hdu.train.vo.TrainTicketPriceInfoVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +32,10 @@ import java.util.List;
  */
 @Service("iTrainService")
 public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements ITrainService {
+
+
+    @Autowired
+    private  TrainMapper trainMapper;
 
     @Override
     public Result TrainInfo(Integer offset, Integer limit) {
@@ -67,5 +78,22 @@ public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements
     @Override
     public void addTrainInfo(Train train) {
         this.baseMapper.insert(train);
+    }
+
+    @Override
+    public List<TrainTicketPriceInfoVO> searchTrainScheduleInfo(String trainStartStation, String trainEndStation, String datetime) {
+        // datetime 需要转换
+        LambdaQueryWrapper<Train> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Train::getTrainStartStation,trainStartStation)
+                .eq(Train::getTrainEndStation,trainEndStation)
+                .gt(Train::getTrainStartTime,datetime);
+        List<Train> trains = this.baseMapper.selectList(lambdaQueryWrapper);
+        return BeanCopyUtils.copyBeanList(trains, TrainTicketPriceInfoVO.class);
+    }
+
+    @Override
+    public List<TrainScheduleInfoVO> getTrainScheduleInfo(String trainStartStation, String trainEndStation) {
+
+        return trainMapper.getTrainScheduleInfo(trainStartStation,trainEndStation);
     }
 }
