@@ -96,4 +96,9 @@ public class TrainServiceImpl extends ServiceImpl<TrainMapper, Train> implements
 
         return trainMapper.getTrainScheduleInfo(trainStartStation,trainEndStation);
     }
+
+    @Override
+    public List<TrainScheduleInfoVO> searchTrainScheduleInfoList(String trainNo, String trainStartStationNo, String trainEndStationNo) {
+        return trainMapper.searchTrainScheduleList(trainNo,trainStartStationNo,trainEndStationNo);
+    }
 }

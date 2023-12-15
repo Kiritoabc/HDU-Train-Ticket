@@ -36,4 +36,6 @@ public interface ITrainService extends IService<Train> {
     List<TrainTicketPriceInfoVO> searchTrainScheduleInfo(String trainStartStation, String trainEndStation, String datetime);
 
     List<TrainScheduleInfoVO> getTrainScheduleInfo(String trainStartStation, String trainEndStation);
+
+    List<TrainScheduleInfoVO> searchTrainScheduleInfoList(String trainNo, String trainStartStationNo, String trainEndStationNo);
 }

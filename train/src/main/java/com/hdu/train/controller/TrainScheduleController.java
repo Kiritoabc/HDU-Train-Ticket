@@ -42,4 +42,31 @@ public class TrainScheduleController {
     }
 
 
+    /**
+     * @description: 返回列车具体的经停信息
+     * @param:  train_start_station_no
+                train_end_station_no
+                train_no
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/15 13:11
+     */
+    @GetMapping("/getTrainScheduleList")
+    public Result GetTrainScheduleInfoList(@RequestParam String train_start_station_no, String  train_end_station_no, String train_no) {
+        List<TrainScheduleInfoVO> list = iTrainService.searchTrainScheduleInfoList(train_no,train_start_station_no,train_end_station_no);
+        return Result.ok().data("list",list);
+    }
+
+    /**
+     * @description: TODO:查询接续换乘路线
+     * @param:  train_start_station
+                train_end_station
+     * @return: com.hdu.train.util.Result
+     * @author 菠萝
+     * @date: 2023/12/15 13:13
+     */
+    @GetMapping("/searchTransferSchedule")
+    public Result GetTrainScheduleInfoList(@RequestParam String train_start_station, String train_end_station) {
+        return null;
+    }
 }

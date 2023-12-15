@@ -42,4 +42,17 @@ public interface TrainMapper extends BaseMapper<Train> {
             " B.station_name = #{trainEndStation} \n" +
             " and A.station_no <B.station_no)")
     List<TrainScheduleInfoVO> getTrainScheduleInfo(String trainStartStation, String trainEndStation);
+
+    @Select("select A.train_no as train_no, A.train_number as train_number ,\n" +
+            "A.station_name as start_station ,B.station_name as end_station , \n" +
+            " A.station_no as start_no , B.station_no as  end_no  ,\n" +
+            "  A.start_time as start_time , B.arrive_time as arrive_time,\n" +
+            "   A.running_time as start_running_time ,B.running_time as end_running_time \n" +
+            "    from `station` as A ,`station` as B \n" +
+            "    where A.station_no between #{trainStartStationNo} and #{trainEndStationNo} \n" +
+            "    and  B.station_no between #{trainStartStationNo} and #{trainEndStationNo} \n" +
+            "    and A.train_no = #{trainNo} \n" +
+            "    and A.train_no = B.train_no \n" +
+            "    and B.station_no = A.station_no +1 order by A.station_no ,B.station_no ")
+    List<TrainScheduleInfoVO> searchTrainScheduleList(String trainNo, String trainStartStationNo, String trainEndStationNo);
 }
