@@ -43,13 +43,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Autowired
     private UserMapper userMapper;
     @Override
-    public String login(User user) {
+    public User login(User user) {
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUserPhoneNumber,user.getUserPhoneNumber());
-        wrapper.eq(User::getUserPassword,user.getUserPassword());
+        wrapper.eq(User::getUserPassword,SecureUtil.md5(user.getUserPassword()));
         User loginUser = userMapper.selectOne(wrapper);
         if (loginUser!=null){
-            return loginUser.getUserRealName();
+            return loginUser;
         }
         return null;
     }

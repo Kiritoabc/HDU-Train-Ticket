@@ -21,7 +21,7 @@ import java.util.List;
  */
 public interface IUserService extends IService<User> {
 
-    String login(User user);
+    User login(User user);
 
     Object info(String username);
     Result register(UserRegisterDTO userRegisterDTO);

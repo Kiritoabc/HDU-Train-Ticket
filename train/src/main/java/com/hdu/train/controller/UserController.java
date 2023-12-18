@@ -47,10 +47,10 @@ public class UserController {
     @PostMapping("login")
     public Result login(@RequestBody User user){
         if(iUserService.login(user)!=null){
-            String username = iUserService.login(user);
-            String token = JwtToken.generateToken(username);
+            User user1 = iUserService.login(user);
+            String token = JwtToken.generateToken(user1.getUserRealName());
             // 将user信息存入redis,并设置过期时间 --> 对应jwt的有效时间为7天
-            redisObjUtil.setEntity(token,user,60*24*7);
+            redisObjUtil.setEntity(token,user1,60*24*7);
             return Result.ok().data("token",token);
         }
         return Result.error().message("登陆失败，账号或密码错误");
