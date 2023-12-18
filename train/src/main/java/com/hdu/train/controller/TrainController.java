@@ -6,7 +6,7 @@ import com.hdu.train.entity.Train;
 import com.hdu.train.service.ISeatService;
 import com.hdu.train.service.IStationService;
 import com.hdu.train.service.ITrainService;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.TrainInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -39,7 +39,7 @@ public class TrainController {
      * @description:
      * @param:  offset
                 limit
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 11:39
      */

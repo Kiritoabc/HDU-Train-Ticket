@@ -10,7 +10,7 @@ import com.hdu.train.service.IUserService;
 import com.hdu.train.util.JwtToken;
 import com.hdu.train.util.RedisObjUtil;
 import com.hdu.train.util.RedisUtils;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.UserInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +74,7 @@ public class UserController {
     /**
      * @description:  注册接口
      * @param: userRegisterDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/9 16:46
      */
@@ -86,7 +86,7 @@ public class UserController {
     /**
      * @description: 退出登录
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/9 22:21
      */
@@ -101,7 +101,7 @@ public class UserController {
     /**
      * @description: 查询用户信息接口
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/10 13:02
      */
@@ -113,7 +113,7 @@ public class UserController {
     /**
      * @description: 修改用户信息
      * @param: changeUserDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/10 13:26
      */
@@ -125,7 +125,7 @@ public class UserController {
     /**
      * @description: 更改用户密码
      * @param: changePasswordDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/10 14:45
      */
@@ -137,7 +137,7 @@ public class UserController {
     /**
      * @description: 管理员登录
      * @param: adminLoginDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/10 15:22
      */
@@ -149,7 +149,7 @@ public class UserController {
     /**
      * @description: 查询所有用户
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/10 15:42
      */
@@ -165,7 +165,7 @@ public class UserController {
     /**
      * @description: 查询所有乘客
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/10 15:47
      */

@@ -6,7 +6,7 @@ import com.hdu.train.dto.OrderTrainTicketDTO;
 import com.hdu.train.entity.Order;
 import com.hdu.train.mapper.OrderMapper;
 import com.hdu.train.service.IOrderService;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.GetOrderListVO;
 import com.hdu.train.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;

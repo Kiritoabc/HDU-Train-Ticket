@@ -1,4 +1,6 @@
-package com.hdu.train.util;
+package com.hdu.train.result;
+
+import com.hdu.train.emums.AppHttpCodeEnum;
 
 import java.util.HashMap;
 import java.util.Map;

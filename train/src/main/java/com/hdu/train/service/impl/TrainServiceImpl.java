@@ -8,7 +8,7 @@ import com.hdu.train.entity.Train;
 import com.hdu.train.mapper.TrainMapper;
 import com.hdu.train.service.ITrainService;
 import com.hdu.train.util.BeanCopyUtils;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.PageVO;
 import com.hdu.train.vo.TrainInfoVO;
 import com.hdu.train.vo.TrainScheduleInfoVO;
@@ -16,10 +16,6 @@ import com.hdu.train.vo.TrainTicketPriceInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

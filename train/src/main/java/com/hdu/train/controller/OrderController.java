@@ -7,7 +7,7 @@ import com.hdu.train.dto.PayDTO;
 import com.hdu.train.entity.User;
 import com.hdu.train.service.IOrderService;
 import com.hdu.train.util.RedisObjUtil;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.GetOrderListVO;
 import com.hdu.train.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class OrderController {
     /**
      * @description: 获取用户所有的订单
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 15:56
      */
@@ -56,7 +56,7 @@ public class OrderController {
     /**
      * @description: 获取还未出行的所有订单
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:02
      */
@@ -74,7 +74,7 @@ public class OrderController {
     /**
      * @description: 获取用户未支付的订单
      * @param: token
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:07
      */
@@ -92,7 +92,7 @@ public class OrderController {
     /**
      * @description: 退票
      * @param: token,order_id
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:14
      */
@@ -109,7 +109,7 @@ public class OrderController {
     /**
      * @description: TODO: 暂时没想好
      * @param:
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:20
      */
@@ -121,7 +121,7 @@ public class OrderController {
     /**
      * @description: 更具订单ID获取订单
      * @param: orderInfoDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:35
      */
@@ -141,7 +141,7 @@ public class OrderController {
                 start_no
                 end_no
                 passenger_phone_number
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:38
      */
@@ -155,7 +155,7 @@ public class OrderController {
     /**
      * @description: 获取订单钱数
      * @param: order_id
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/11 16:44
      */
@@ -168,7 +168,7 @@ public class OrderController {
     /**
      * @description: 获取所有订单
      * @param:
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/12 11:19
      */
@@ -181,7 +181,7 @@ public class OrderController {
     /**
      * @description: 根据电话查询订单
      * @param: user_phone_number
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/12 11:23
      */
@@ -194,7 +194,7 @@ public class OrderController {
     /**
      * @description: 订票
      * @param: orderTrainTicketDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/13 13:44
      */
@@ -210,7 +210,7 @@ public class OrderController {
                 train_no
                 start_no
                 end_no
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/13 14:03
      */
@@ -224,7 +224,7 @@ public class OrderController {
     /**
      * @description: 订单支付
      * @param: payDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 11:04
      */

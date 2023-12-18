@@ -2,7 +2,7 @@ package com.hdu.train.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hdu.train.entity.Train;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.TrainInfoVO;
 import com.hdu.train.vo.TrainScheduleInfoVO;
 import com.hdu.train.vo.TrainTicketPriceInfoVO;

@@ -4,13 +4,11 @@ import cn.hutool.core.date.DateUtil;
 import com.hdu.train.dto.TransferTrainTicketNumDTO;
 import com.hdu.train.service.ITrainService;
 import com.hdu.train.util.RedisObjUtil;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.TrainTicketPriceInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -37,7 +35,7 @@ public class TrainTicketQueryController {
      * @param:  train_start_station
                 train_end_station
                 datetime
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 21:44
      */
@@ -65,7 +63,7 @@ public class TrainTicketQueryController {
                 start_no
                 end_no
                 train_number
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 21:44
      */
@@ -79,7 +77,7 @@ public class TrainTicketQueryController {
      * @param:  train_start_station
                 train_end_station
                 datetime
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 21:45
      */
@@ -91,7 +89,7 @@ public class TrainTicketQueryController {
     /**
      * @description: TODO: 暂时没想好
      * @param: transferTrainTicketNumDTO
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 21:50
      */

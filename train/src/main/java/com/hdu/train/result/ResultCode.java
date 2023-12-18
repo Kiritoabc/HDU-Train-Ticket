@@ -1,4 +1,4 @@
-package com.hdu.train.util;
+package com.hdu.train.result;
 
 public interface ResultCode {
     public static Integer SUCCESS = 200; //成功

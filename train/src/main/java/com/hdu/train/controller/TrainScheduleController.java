@@ -1,9 +1,8 @@
 package com.hdu.train.controller;
 
 import com.hdu.train.service.ITrainService;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.TrainScheduleInfoVO;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,7 @@ public class TrainScheduleController {
      * @description: 根据起始站 目的站  查询符合条件的列车信息
      * @param:  train_start_station
                 train_end_station
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/14 22:17
      */
@@ -47,7 +46,7 @@ public class TrainScheduleController {
      * @param:  train_start_station_no
                 train_end_station_no
                 train_no
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/15 13:11
      */
@@ -61,7 +60,7 @@ public class TrainScheduleController {
      * @description: TODO:查询接续换乘路线
      * @param:  train_start_station
                 train_end_station
-     * @return: com.hdu.train.util.Result
+     * @return: com.hdu.train.result.Result
      * @author 菠萝
      * @date: 2023/12/15 13:13
      */

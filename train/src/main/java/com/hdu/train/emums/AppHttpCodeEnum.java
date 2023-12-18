@@ -1,4 +1,4 @@
-package com.hdu.train.util;
+package com.hdu.train.emums;
 
 public enum AppHttpCodeEnum {
     // 操作成功信息

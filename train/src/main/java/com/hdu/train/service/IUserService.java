@@ -6,9 +6,8 @@ import com.hdu.train.dto.ChangePasswordDTO;
 import com.hdu.train.dto.ChangeUserDTO;
 import com.hdu.train.dto.UserRegisterDTO;
 import com.hdu.train.entity.User;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.UserInfoVO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

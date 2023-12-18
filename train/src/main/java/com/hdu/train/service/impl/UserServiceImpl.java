@@ -13,7 +13,7 @@ import com.hdu.train.mapper.UserMapper;
 import com.hdu.train.service.IUserService;
 import com.hdu.train.util.JwtToken;
 import com.hdu.train.util.RedisObjUtil;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import com.hdu.train.vo.UserInfoVO;
 import com.hdu.train.vo.UserRegisterVO;
 import org.springframework.beans.BeanUtils;

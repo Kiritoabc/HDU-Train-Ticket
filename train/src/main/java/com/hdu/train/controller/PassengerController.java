@@ -1,7 +1,6 @@
 package com.hdu.train.controller;
 
-import com.hdu.train.entity.Passenger;
-import com.hdu.train.util.Result;
+import com.hdu.train.result.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
