@@ -1,10 +1,15 @@
 package com.hdu.train.controller;
 
+import com.hdu.train.dto.PassengerDTO;
+import com.hdu.train.entity.Passenger;
+import com.hdu.train.entity.User;
 import com.hdu.train.result.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.hdu.train.service.IPassengerService;
+import com.hdu.train.util.BeanCopyUtils;
+import com.hdu.train.util.RedisObjUtil;
+import com.hdu.train.util.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -17,10 +22,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/passenger")
 public class PassengerController {
+    @Autowired
+    private IPassengerService iPassengerService;
+    @Autowired
+    private RedisObjUtil redisObjUtil;
     @GetMapping("getPassengerInfo")
     public Result GetPassengerInfo(@RequestParam String token){
-
-        return Result.ok();
+        if(redisObjUtil.getEntity(token)){
+            User user = redisObjUtil.getEntity(token);
+            return Result.ok().data("data",user);
+        }
+        return Result.error().message("查询失败");
+    }
+    @PostMapping("/addPassengerInfo")
+    public Result addPassenger(@RequestBody PassengerDTO passenger){
+        User user = redisObjUtil.getEntity(passenger.getToken());
+        if(user!=null){
+            passenger.setPassengerPhoneNumber(user.getUserPhoneNumber());
+            Passenger insertPassenger = BeanCopyUtils.copyBean(passenger,Passenger.class);
+            if (iPassengerService.addPassenger(insertPassenger)){
+                return Result.ok().message("插入成功");
+            }
+            return Result.error().message("插入失败");
+        }
+        return Result.error().message("插入失败");
     }
 
 }

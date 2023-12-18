@@ -13,4 +13,5 @@ import com.hdu.train.entity.Passenger;
  */
 public interface IPassengerService extends IService<Passenger> {
 
+    boolean addPassenger(Passenger insertPassenger);
 }
